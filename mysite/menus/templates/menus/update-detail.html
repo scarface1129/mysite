@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{%block head_title%}{{form.instance.name}} | Menu Items | {{block.super}}{%endblock%}
+{%block content%}
+<h1> {{form.instance.name.capitalize}} </h1>
+<h3>Location: {{form.instance.gym.name}} </h3>
+
+{%if form.instance.content%}
+   <h4>CONTENT</h4>
+    {% for item in form.instance.get_content %}
+   		<li>{{item}}</li>
+    {% endfor %}
+{%endif%}
+{%if form.instance.excludes%}
+   <h4>EXCLUDE</h4> 
+    {% for item in form.instance.get_excludes %}
+   		<li>{{item}}</li>
+    {% endfor %}
+{%endif%}
+<hr>
+<hr>
+<hr>
+<hr>
+  {{title.capitalize}}
+ {% include 'snippet/form_snippet.html' with form=form %}
+{%endblock%}

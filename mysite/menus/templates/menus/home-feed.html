@@ -1,0 +1,25 @@
+{%extends 'base.html' %}
+{% block content %}
+<div class="container text-center">
+<div class="card card-secondary">
+  <h2> The Current User Is {{user}}</h2>
+  <h1>User Following Feed...</h1>
+{%for obj in object_gist%}
+
+<div class="thumbnail">
+         <h3><a href="{% url 'profiles:detail' username=obj.user.username %}">{{obj.user.username}}</a></h3> 
+          <h2><a href="{% url 'profiles:detail' username=obj.user.username %}?q={{obj.gym.name}}">{{obj.gym.name}}</a> | <a href="{% url 'profiles:detail' username=obj.user.username %}?q={{obj.gym.location}}">{{obj.gym.location}}</a> | <a href="{% url 'profiles:detail' username=obj.user.username %}?q={{obj.gym.ability}} ">{{obj.gym.ability}}</a></h3>
+          <p> 
+            <b>{{obj.name}}:</b>doing.....
+            {% for ing in obj.get_content %}
+                    <li><a href="{% url 'profiles:detail' username=obj.user.username %}?q={{ing}}">{{ing}}</a></li>
+            {% endfor %}
+        </p>
+        <hr>
+      </div>
+   
+
+{%endfor%}
+ </div>
+  </div>
+{%endblock%}

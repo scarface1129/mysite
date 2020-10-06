@@ -1,0 +1,58 @@
+{%extends 'base.html'%}
+
+{%block head_title%} {{ user.username }} | {{block.super}}{%endblock%}
+
+{%block content%}
+<h3>THE USERS AM FOLLOWING AAND CAN BE ABLE TO SEE THEIR UPDATES</h3>
+{% for followers in request.user.is_following.all%}
+<ul>
+	 <li>{{followers}}   || Last updated in {{followers.updated}}</li>
+	 
+</ul>
+   
+{% endfor %}
+<h1> {{user.username.capitalize}} </h1>
+<p>{% include 'profiles/snippet/follow_form.html' with username=user.username is_following=is_following %}</p>
+
+<form class="form" method="GET" action=".">
+	
+	<input id="scar" type="text" placeholder="search..." name="q" value="{{request.GET.q}}" >
+	<input class="btn btn-default" type="submit" value="search">
+</form>
+<hr>
+{% if location %}
+{% for rest in location %}
+	<div class="row">
+	    <div class="col-sm-12">
+	    	<div class="card card-default" style="margin: 5px; background-color: #9DEDF2;"> 
+		    	<h3>{{rest.title}}</h3>
+		        <p> <a href="{{request.path}}?q={{rest.location}}">{{rest.location}}</a> | <a href="{{request.path}}?q={{rest.ability}}">{{rest.ability}}</a> </p>
+		    	<p> 
+				<ul>
+			 		{%for item in rest.item_set.all%}
+							<b><li>{{item.name}}</li></b>
+				    			<ul>
+									<li>my nickname there is:  <b>{{ item.nickname.capitalize}}</b></li>
+					    				{% for ing in item.get_content %}
+											<a href="{{request.path}}?q={{ing}}">{{ing}}</a><br>
+					    				{% endfor %}
+				    	 		</ul>
+		                  
+
+					{%endfor%}
+
+				</ul>
+				</p>
+				<hr>
+			</div>
+		</div>
+	</div>
+{% endfor %}
+<label for="scar">WANTS TO SEARCH ME??</label>
+{%else%}
+	<p class="lead">ONWERO IFE DI HIAA OO</p>
+	<label for="scar">CLICK ME TO PLACE A SEARCH</label>
+{%endif%}
+
+
+{%endblock%}

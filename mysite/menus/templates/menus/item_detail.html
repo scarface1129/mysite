@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{%block head_title%}Menu Items | {{block.super}}{%endblock%}
+{%block content%}
+<div class="thumbnail">
+	<h1> {{object.name.capitalize}} </h1>
+<h3>Location: {{object.gym.name}} </h3>
+
+{%if object.content%}
+   <h4>CONTENT</h4>
+    {% for item in object.get_content %}
+   		<li>{{item}}</li>
+    {% endfor %}
+{%endif%}
+{%if object.excludes%}
+   <h4>EXCLUDE</h4> 
+    {% for item in object.get_excludes %}
+   		<li>{{item}}</li>
+    {% endfor %}
+    	
+{%endif%}
+</div>
+
+{%endblock%}

@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{%block head_title%}{{ form.instance.title}}| GYMS | {{block.super}}{%endblock%}
+{%block content%}
+<h1>{{form.instance.title}} in <small> {{form.instance.location}} </small></h1>
+<p>{{form.instance.ability}}</p>
+<p>{{form.instance.timestamp}}</p>
+<p> updated {{form.instance.updated | timesince}} ago</p>
+<p>
+	{% if form.instance.images %}
+	    <img src="{{form.instance.images.url}}">
+	{% endif %}
+</p>
+<hr>
+<h2>make changes</h2>
+ {% include 'snippet/form_snippet.html' with form=form %}
+
+{%endblock%}

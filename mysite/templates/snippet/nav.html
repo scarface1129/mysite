@@ -1,0 +1,14 @@
+<div class="container">
+<h1>GODIANS (THE TRUTH ABOUT LOOKING YOUNGER)</h1>
+<ul>
+<li><a href='{%  url "home" %}'>HOME</a></li>
+{% if request.user.is_authenticated %}
+<li><a href='{%  url "mmm:create" %}'>CREATE GYM</a></li>
+<li><a href='{%  url "mmm:list" %}'>GYM LIST</a></li>
+<li><a href='{%  url "menus:list" %}'>MENU LIST</a></li>
+<li><a href='{%  url "menus:create_item" %}'>create</a></li>
+<li><a href='{%  url "login" %}'>LOGIN</a></li>
+<!-- <li><a href='{{get_url}}'>profile_detail</a></li> -->
+{% endif %}
+</ul>
+</div>

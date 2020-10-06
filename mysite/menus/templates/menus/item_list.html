@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+{%block head_title%}Menu Items | {{block.super}}{%endblock%}
+{%block content%}
+<h1> Menu Items <small><a href="{% url 'menus:create_item'%}">Add</a></h1>
+<ul>
+{%for obj in object_list%}
+<ul>
+	<h3><li><a href="{{obj.get_absolute_url}}">{{obj.name}}</a> </li></h3>
+</ul>
+
+<ul>
+	
+{%if obj.content%}
+   content 
+    {% for item in obj.get_content %}
+   		<li>{{item}}</li>
+    {% endfor %}
+{%endif%}
+{%if obj.excludes%}
+   excludes 
+    {% for item in obj.get_excludes %}
+   		<li>{{item}}</li>
+    {% endfor %}
+{%endif%}
+
+</ul><br>
+{% empty %} 
+<li><small><a href="{% url 'menus:create_item'%}">BABA YOU GAT ADD ITEMS HERE OO</a></li>
+{%endfor%}
+
+
+{%endblock%}

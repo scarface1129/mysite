@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+{%block head_title%} | {{block.super}}  {%endblock%}
+{%block content%}
+<h1>{{title}}</h1>
+    {%if form.errors.non_field_errors %}
+    {{ form.errors.non_field_errors }}
+    {%endif%}
+
+<form method="POST"> {% csrf_token %}
+        {{ form.as_p}}
+	<button type="submit"> save </button>
+
+</form>
+
+
+{%endblock%}
+
+<!-- <input type="text" name="name" placeholder="Your Name"><br/><br/>
+	<input type="text" name="location" placeholder="Location"><br/><br/>
+	<input type="text" name="ability" placeholder="Ability"><br/><br/> -->
